@@ -22,3 +22,15 @@ after_success:
   - docker push emosrb/multi-nginx
   - docker push emosrb/multi-server
   - docker push emosrb/multi-worker
+
+deploy:
+    provider: elasticbeanstalk
+    region: 'us-east-2'
+    app: 'multi-docker'
+    env: 'MultiDocker-env'
+    bucket_name: 'elasticbeanstalk-us-east-2-068313599029'
+    bucket_path: 'docker-multi'
+    on:
+      branch: master
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
